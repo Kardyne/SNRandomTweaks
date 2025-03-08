@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<!--
+Copyright (c) 2025 Kardyne. All rights reserved.
+Licensed under the MIT license. See LICENSE file in the project root for details.
+-->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>Kardyne.RandomTweaks</AssemblyName>
+    <Product>Kardyne's Random Tweaks</Product>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>11</LangVersion>
+    <RootNamespace>Kardyne.RandomTweaks</RootNamespace>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+    </RestoreAdditionalProjectSources>
+
+    <RunCommand>steam</RunCommand>
+    <RunArguments>steam://rungameid/264710</RunArguments>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.1.0" />
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.36" IncludeAssets="compile" />
+    <PackageReference Include="Subnautica.GameLibs" Version="71288.0.0-r.0" />
+    <PackageReference Include="PolySharp" Version="1.13.1" />
+    <PackageReference Include="Subnautica.Nautilus" Version="1.*-*" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <Target Name="CopyDLL"
+          Condition="'$(Configuration)' == 'Debug' And Exists('$(SNModDir)') And Exists('$(TargetPath)')"
+          Inputs="$(TargetPath)"
+          Outputs="$(SNModDir)\$(TargetFileName)"
+          AfterTargets="Build">
+      <Message Importance="high" Text="Copying DLL at '$(TargetPath)' to '$(SNModDir)'" />
+      <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SNModDir)" />
+  </Target>
+</Project>

@@ -1,0 +1,25 @@
+﻿using System.Reflection;
+using BepInEx;
+using BepInEx.Logging;
+using HarmonyLib;
+using Nautilus.Handlers;
+
+namespace Kardyne.RandomTweaks;
+
+[BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+[BepInDependency("com.snmodding.nautilus")]
+public class Plugin : BaseUnityPlugin
+{
+    internal static new Config Config { get; } = OptionsPanelHandler.RegisterModOptions<Config>();
+
+    internal new static ManualLogSource Logger { get; private set; }
+
+    private static Assembly Assembly { get; } = Assembly.GetExecutingAssembly();
+
+    private void Awake()
+    {
+        Logger = base.Logger;
+        Harmony.CreateAndPatchAll(Assembly, PluginInfo.PLUGIN_GUID);
+        Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+    }
+}

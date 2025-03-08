@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) 2025 Kardyne. All rights reserved.
+Licensed under the MIT license. See LICENSE file in the project root for details.
+-->
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <SNModDir>$(XDG_DATA_HOME)/Steam/steamapps/common/Subnautica/BepInEx/plugins</SNModDir>
+    </PropertyGroup>
+</Project>
