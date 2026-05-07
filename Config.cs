@@ -17,4 +17,7 @@ public class Config: ConfigFile
 
     [Toggle("Force disable Radiation FX", Tooltip = "Ensure that Radiation Fx will never show.")]
     public bool ForceDisableRadiationFx = false;
+
+    [Toggle("Disable first use animations", Tooltip = "Disable first use animations for tools.")]
+    public bool DisableToolFirstUseAnims = false;
 }

@@ -18,6 +18,8 @@ config menu.
   inventory to switch gear.
 * Force disable Radiation FX: The radiation effects make me a bit dizzy and
   nauseous, so this force disables them.
+* Disable first tool use animations: Disable the animations that happen on the
+  first time the player picks up a tool.
 
 ## Build
 
